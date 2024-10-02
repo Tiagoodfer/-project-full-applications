@@ -18,3 +18,7 @@ INSERT INTO book (uuid, name, description) VALUES
 ('9f4d7e62-6c91-4a9b-9a8b-8b4b8c0d6c9a', 'Guerra e Paz', 'Um extenso romance de Liev Tolstói que retrata a invasão napoleônica na Rússia.'),
 ('af5d2a98-8d75-4b9c-8b4b-6b7e9c1d5e4f', 'Crime e Castigo', 'Um romance de Fiódor Dostoiévski que explora temas de moralidade e arrependimento.')
 ON CONFLICT DO NOTHING;
+
+INSERT INTO booking (uuid, client_id, book_id) VALUES
+('1a7f4d60-3d4e-4a65-9b49-4a97d7a5f911', '8b1445e5-fb1a-49f3-978a-179e727a7f66', '1e7f4d60-3d4e-4a65-9b49-4a97d7a5f905')
+ON CONFLICT DO NOTHING;

@@ -22,8 +22,10 @@ public class Booking {
     private UUID uuid;
 
     @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
     @ManyToOne
+    @JoinColumn(name = "book_id", nullable = false)
     private Book book;
 }
