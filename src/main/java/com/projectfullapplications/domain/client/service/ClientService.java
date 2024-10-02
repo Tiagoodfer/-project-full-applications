@@ -24,7 +24,6 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-
     public void deleteById(UUID uuid) {
         clientRepository.deleteById(uuid);
     }

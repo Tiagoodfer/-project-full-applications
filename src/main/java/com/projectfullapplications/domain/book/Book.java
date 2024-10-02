@@ -22,6 +22,6 @@ public class Book {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "email")
+    @Column(name = "description")
     private String description;
 }
