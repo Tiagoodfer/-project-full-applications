@@ -1,4 +1,4 @@
 package com.projectfullapplications.domain.client.controller;
 
-public class ClienteController {
+public class ClientController {
 }
