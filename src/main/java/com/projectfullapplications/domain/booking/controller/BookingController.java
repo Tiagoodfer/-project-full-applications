@@ -1,8 +1,7 @@
 package com.projectfullapplications.domain.booking.controller;
 
-import com.projectfullapplications.domain.booking.Booking;
+import com.projectfullapplications.domain.booking.dto.BookingDTO;
 import com.projectfullapplications.domain.booking.service.BookingService;
-import com.projectfullapplications.domain.client.Client;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,21 +16,20 @@ public class BookingController {
     private BookingService bookingService;
 
     @PostMapping
-    public ResponseEntity<Booking> create(@RequestBody Booking booking) {
-        Booking createBooking = bookingService.create(booking);
+    public ResponseEntity<BookingDTO> create(@RequestBody BookingDTO bookingDTO) {
+        BookingDTO createBooking = bookingService.create(bookingDTO);
         return new ResponseEntity<>(createBooking, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Booking>> findAll() {
-        List<Booking> allClients = bookingService.findAll();
-        return new ResponseEntity<>(allClients, HttpStatus.OK);
+    public ResponseEntity<List<BookingDTO>> findAll() {
+        List<BookingDTO> allBookings = bookingService.findAll();
+        return new ResponseEntity<>(allBookings, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Client> deleteById(@PathVariable("id") UUID uuid) {
+    public ResponseEntity<Void> deleteById(@PathVariable("id") UUID uuid) {
         bookingService.deleteById(uuid);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 }

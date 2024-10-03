@@ -1,7 +1,6 @@
 package com.projectfullapplications.domain.client.controller;
 
-import com.projectfullapplications.domain.client.Client;
-import com.projectfullapplications.domain.client.repository.ClientRepository;
+import com.projectfullapplications.domain.client.dto.ClientDTO;
 import com.projectfullapplications.domain.client.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,27 +17,31 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+    // Endpoint para criar um novo cliente
     @PostMapping
-    public ResponseEntity<Client> create(@RequestBody Client client) {
-        Client createdClient = clientService.create(client);
+    public ResponseEntity<ClientDTO> create(@RequestBody ClientDTO clientDTO) {
+        ClientDTO createdClient = clientService.create(clientDTO);
         return new ResponseEntity<>(createdClient, HttpStatus.CREATED);
     }
 
+    // Endpoint para buscar todos os clientes
     @GetMapping
-    public ResponseEntity<List<Client>> findAll() {
-        List<Client> allClients = clientService.findAll();
+    public ResponseEntity<List<ClientDTO>> findAll() {
+        List<ClientDTO> allClients = clientService.findAll();
         return new ResponseEntity<>(allClients, HttpStatus.OK);
     }
 
+    // Endpoint para deletar cliente por ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<Client> deleteById(@PathVariable("id") UUID uuid) {
+    public ResponseEntity<Void> deleteById(@PathVariable("id") UUID uuid) {
         clientService.deleteById(uuid);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    // Endpoint para atualizar um cliente
     @PutMapping("/{id}")
-    public ResponseEntity<Client> update(@PathVariable("id") UUID uuid, @RequestBody Client client) {
-        Client updateClient = clientService.update(uuid, client);
-        return new ResponseEntity<>(updateClient, HttpStatus.NO_CONTENT);
+    public ResponseEntity<ClientDTO> update(@PathVariable("id") UUID uuid, @RequestBody ClientDTO clientDTO) {
+        ClientDTO updatedClient = clientService.update(uuid, clientDTO);
+        return new ResponseEntity<>(updatedClient, HttpStatus.NO_CONTENT);
     }
 }

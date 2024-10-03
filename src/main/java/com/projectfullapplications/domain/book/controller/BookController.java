@@ -1,6 +1,6 @@
 package com.projectfullapplications.domain.book.controller;
 
-import com.projectfullapplications.domain.book.Book;
+import com.projectfullapplications.domain.book.dto.BookDTO;
 import com.projectfullapplications.domain.book.service.BookService;
 import com.projectfullapplications.domain.client.Client;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,27 +19,26 @@ public class BookController {
     private BookService bookService;
 
     @PostMapping
-    public ResponseEntity<Book> create(@RequestBody Book book) {
-        Book bookCreated = bookService.create(book);
+    public ResponseEntity<BookDTO> create(@RequestBody BookDTO bookDTO) {
+        BookDTO bookCreated = bookService.create(bookDTO);
         return new ResponseEntity<>(bookCreated, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Book>> findAll() {
-        List<Book> allClients = bookService.findAll();
-        return new ResponseEntity<>(allClients, HttpStatus.OK);
+    public ResponseEntity<List<BookDTO>> findAll() {
+        List<BookDTO> allBooks = bookService.findAll();
+        return new ResponseEntity<>(allBooks, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Book> deleteById(@PathVariable("id") UUID uuid) {
+    public ResponseEntity<Void> deleteById(@PathVariable("id") UUID uuid) {
         bookService.deleteById(uuid);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Book> update(@PathVariable("id") UUID uuid, @RequestBody Client client) {
-        Book updateBook = bookService.update(uuid, client);
+    public ResponseEntity<BookDTO> update(@PathVariable("id") UUID uuid, @RequestBody Client client) {
+        BookDTO updateBook = bookService.update(uuid, client);
         return new ResponseEntity<>(updateBook, HttpStatus.NO_CONTENT);
     }
-
 }
